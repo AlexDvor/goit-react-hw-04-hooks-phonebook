@@ -24,11 +24,11 @@ export default function App() {
   //   }
   // }
 
-  const getData = data => {
+  const getData = ({ name, id, number }) => {
     const newContacts = {
-      name: data.name,
-      id: data.id,
-      number: data.number,
+      name,
+      id,
+      number,
     };
     updateContacts(newContacts);
   };
