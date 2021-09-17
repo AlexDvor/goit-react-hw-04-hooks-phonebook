@@ -1,12 +1,18 @@
 import { Container } from './components/Container/Container';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Form from './components/Form';
 import Contact from './components/Contact';
 import Filter from './components/Filter';
 
 export default function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(window.localStorage.getItem('contacts')) ?? '',
+  );
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   // componentDidMount() {
   //   const localStor = localStorage.getItem("contacts");
@@ -40,9 +46,7 @@ export default function App() {
       : setContacts(prevState => [...prevState, newData]);
   };
 
-  const handleFilterByName = e => {
-    setFilter(e.target.value);
-  };
+  const handleFilterByName = e => setFilter(e.target.value);
 
   const renderListName = (array, name) => {
     return array.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
