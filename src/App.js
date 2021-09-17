@@ -4,10 +4,16 @@ import Form from './components/Form';
 import Contact from './components/Contact';
 import Filter from './components/Filter';
 
+const useLocalStorage = (key, defaultValue) => {
+  const [state, setState] = useState(() => {
+    return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
+  });
+
+  return [state, setState];
+};
+
 export default function App() {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(window.localStorage.getItem('contacts')) ?? [],
-  );
+  const [contacts, setContacts] = useLocalStorage('contacts', []);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
