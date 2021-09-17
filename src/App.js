@@ -14,22 +14,6 @@ export default function App() {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  // componentDidMount() {
-  //   const localStor = localStorage.getItem("contacts");
-  //   const parseLocalStor = JSON.parse(localStor);
-  //   if (parseLocalStor) {
-  //     this.setState({
-  //       contacts: parseLocalStor,
-  //     });
-  //   }
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  //   }
-  // }
-
   const getData = ({ name, id, number }) => {
     const newContacts = {
       name,
